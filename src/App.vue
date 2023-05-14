@@ -1,20 +1,24 @@
 <template>
-  <div>
-    <!-- 
-       @subPrice = "fn"
-       这里的fn不能加小括号,如果加上小括号,那么孩子传递过来的参数就会被忽略
-     -->
-     <Product v-for="(obj, ind) in list" :key="obj.id"
+  <div style="overflow: hidden;">
+    <div style="float: left;">
+      <Product v-for="(obj, ind) in list" :key="obj.id"
       :title="obj.proname"
       :price="obj.proprice"
       :intro="obj.info"
       :index="ind"
       @subPrice = "fn"
      ></Product>
+    </div>
+
+    <div style="float: left;">
+       <List :arr="list"></List>
+    </div>
+    
   </div>
 </template>
 <script>
 import Product from './components/MyProduct_sub.vue';
+import List from './components/List.vue';
 export default {
   data() {
     return {
@@ -26,7 +30,8 @@ export default {
     }
   },
   components: {
-     Product
+     Product,
+     List
   },
   methods: {
      fn(index, price) {
