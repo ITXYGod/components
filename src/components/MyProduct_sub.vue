@@ -8,6 +8,7 @@
 </template>
   
 <script>
+import eventBus from '../EventBus';
 export default {
     props: ['index','title', 'price', 'intro'],
     methods: {
@@ -18,8 +19,10 @@ export default {
             // this.price = this.price -1
 
             // 使用this.$emit() 规定方法-主动触发事件
-            this.$emit('subPrice', this.index, 1)
+            // this.$emit('subPrice', this.index, 1)
 
+            // 目标: 跨组件传值传递给list.vue组件
+            eventBus.$emit('send', this.index, 1);
         }
     }
 }
